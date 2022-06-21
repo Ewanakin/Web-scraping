@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+{% endblock %}
+{% block javascripts %}
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://kit.fontawesome.com/d4c4722d44.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block title %}Hello ScraperController!{% endblock %}
+
+{% block body %}
+    <table>
+        {% for index in search|batch(3) %}
+            <tr>
+                {% for element in index %}
+                    <td>
+                        <div class="card text-center">
+                            <div class="card-header">
+                                {{element}}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">Voir les pages associées à la recherche</p>
+                                <a href="{{path('link_search', {id: element.id})}}" class="btn btn-primary"> Se diriger vers {{element.id}}<b<i class="fa fa-arrow-right"></i> </a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
